@@ -1,79 +1,66 @@
-# Materi Bootstrap Dasar - Lengkap dengan Dark Mode dan Komponen Lanjutan
+# # Online Resume/CV dengan Bootstrap (Dark Mode)
 
-## 1. Pengenalan Bootstrap
+## 🎯 Tujuan
 
-### Apa itu Bootstrap?
+- Membuat resume online sederhana menggunakan **Bootstrap**
+- Menambahkan **Dark Mode** menggunakan Bootstrap Theme Toggle
+- Memastikan proyek lengkap dengan semua komponen utama
 
-Bootstrap adalah framework CSS open-source yang dirancang untuk membantu pengembang dalam membangun situs web yang responsif dan mobile-first dengan cepat. Bootstrap menyediakan sistem grid, komponen UI siap pakai, serta berbagai utilitas untuk styling.
+---
 
-### Mengapa Menggunakan Bootstrap?
+## 🛠️ Tools & Teknologi
 
-- Mempercepat pengembangan web
-- Responsif secara default
-- Dukungan komponen UI yang lengkap
-- Dokumentasi yang luas dan komunitas besar
+- **Bootstrap 5** (CDN)
+- **HTML, CSS, JavaScript**
+- **Font Awesome** (ikon)
+- **Lorem Picsum** (gambar placeholder)
 
-## 2. Instalasi Bootstrap
+---
 
-### a) Menggunakan CDN
+## 1️⃣ Setup Proyek
 
-Cara termudah menggunakan Bootstrap adalah dengan menyertakan link ke CDN dalam HTML:
+Buat folder proyek dan file utama:
+
+```
+resume/
+ ├── index.html
+ ├── style.css
+ ├── script.js
+ ├── img/
+```
+
+Gunakan Bootstrap CDN di **index.html**:
 
 ```html
 <!doctype html>
-<html lang="id">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap Dasar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Resume</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Hello, Bootstrap!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
 ```
 
-### b) Menggunakan Paket NPM
+---
 
-Jika ingin mengelola dependensi dengan NPM:
+## 2️⃣ Navbar dengan Dark Mode Toggle
 
-```sh
-npm install bootstrap
-```
-
-Lalu impor di dalam proyek JavaScript:
-
-```js
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-```
-
-## 3. Sistem Grid Bootstrap
-
-Bootstrap menggunakan sistem grid berbasis 12 kolom untuk mengatur layout.
+Tambahkan navigasi di bagian atas dengan **dark mode toggle**:
 
 ```html
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 bg-primary text-white p-3">Kolom 1 (6/12)</div>
-    <div class="col-md-6 bg-secondary text-white p-3">Kolom 2 (6/12)</div>
-  </div>
-</div>
-```
-
-## 4. Komponen Dasar Bootstrap
-
-### a) Navbar
-
-```html
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="#">MyWebsite</a>
+    <a class="navbar-brand" href="#">My Resume</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -83,132 +70,165 @@ Bootstrap menggunakan sistem grid berbasis 12 kolom untuk mengatur layout.
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#experience">Experience</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <button id="theme-toggle" class="btn btn-outline-dark">🌙</button>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 ```
 
-### b) Card
+---
+
+## 3️⃣ Hero Section
+
+Tambahkan hero dengan tinggi penuh:
 
 ```html
-<div class="card" style="width: 18rem;">
-  <img src="https://via.placeholder.com/150" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title">Judul Kartu</h5>
-    <p class="card-text">Deskripsi singkat tentang kartu ini.</p>
-    <a href="#" class="btn btn-primary">Lihat Selengkapnya</a>
+<header
+  class="d-flex align-items-center justify-content-center text-center"
+  style="height: 100vh;"
+>
+  <div>
+    <h1>Nama Anda</h1>
+    <p>Web Developer | UI/UX Designer</p>
+    <a href="#contact" class="btn btn-primary">Hire Me</a>
+  </div>
+</header>
+```
+
+---
+
+## 4️⃣ Struktur Resume
+
+Gunakan Bootstrap untuk membuat layout dengan **Container, Row, Col**:
+
+```html
+<div class="container mt-5" id="about">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <img
+        src="https://picsum.photos/200"
+        class="rounded-circle img-fluid"
+        alt="Profile"
+      />
+      <h2 class="mt-3">Nama Anda</h2>
+      <p>Web Developer | UI/UX Designer</p>
+    </div>
+    <div class="col-md-8">
+      <h3>About Me</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
   </div>
 </div>
 ```
 
-### c) Form
+---
+
+## 5️⃣ Experience & Skills
+
+Tambahkan **Experience, Skills, dan Contact**:
 
 ```html
-<form>
-  <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input type="email" class="form-control" placeholder="Masukkan email" />
+<div class="container mt-4" id="experience">
+  <h3>Experience</h3>
+  <ul>
+    <li>Frontend Developer - XYZ Company</li>
+    <li>Intern UI/UX - ABC Studio</li>
+  </ul>
+</div>
+
+<div class="container mt-4" id="skills">
+  <h3>Skills</h3>
+  <div class="progress">
+    <div class="progress-bar bg-primary" style="width: 80%;">HTML & CSS</div>
   </div>
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+  <div class="progress mt-2">
+    <div class="progress-bar bg-warning" style="width: 70%;">JavaScript</div>
+  </div>
+</div>
 ```
 
-## 5. Dark Mode dengan Bootstrap
+---
 
-Bootstrap mendukung dark mode dengan class `data-bs-theme="dark"`.
+## 6️⃣ Dark Mode Toggle dengan Bootstrap
 
-```html
-<body data-bs-theme="dark"></body>
+Di **script.js**, tambahkan kode untuk toggle dark mode di seluruh halaman:
+
+```js
+document.getElementById("theme-toggle").addEventListener("click", function () {
+  let html = document.documentElement;
+  let currentTheme = html.getAttribute("data-bs-theme");
+  let newTheme = currentTheme === "light" ? "dark" : "light";
+  html.setAttribute("data-bs-theme", newTheme);
+});
 ```
 
-Namun, untuk dark mode yang bisa diubah oleh pengguna, kita bisa menggunakan JavaScript:
+---
+
+## 7️⃣ Contact Section
+
+Tambahkan formulir kontak sederhana:
 
 ```html
-<button id="toggleTheme" class="btn btn-warning">Toggle Dark Mode</button>
-<script>
-  const toggleButton = document.getElementById("toggleTheme");
-  toggleButton.addEventListener("click", () => {
-    document.body.dataset.bsTheme =
-      document.body.dataset.bsTheme === "dark" ? "light" : "dark";
-  });
-</script>
-```
-
-## 6. Proyek Praktik: Portfolio Sederhana
-
-Kita akan membuat halaman portfolio sederhana dengan fitur dark mode.
-
-```html
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body data-bs-theme="light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">Portfolio</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container mt-5">
-      <button id="toggleTheme" class="btn btn-warning mb-3">
-        Toggle Dark Mode
-      </button>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="https://via.placeholder.com/150"
-              class="card-img-top"
-              alt="Project"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Project 1</h5>
-              <p class="card-text">Deskripsi singkat.</p>
-              <a href="#" class="btn btn-primary">Lihat</a>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="container mt-4" id="contact">
+  <h3>Contact Me</h3>
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" />
     </div>
-    <script>
-      const toggleButton = document.getElementById("toggleTheme");
-      toggleButton.addEventListener("click", () => {
-        document.body.dataset.bsTheme =
-          document.body.dataset.bsTheme === "dark" ? "light" : "dark";
-      });
-    </script>
-  </body>
-</html>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Message</label>
+      <textarea class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+</div>
 ```
 
-## Kesimpulan
+---
 
-Dengan menggunakan Bootstrap, kita dapat membuat halaman web yang responsif dan modern dengan cepat. Dark mode serta berbagai komponen UI membantu meningkatkan pengalaman pengguna.
+## 8️⃣ Footer & Responsiveness
+
+Tambahkan **footer dan pastikan responsif**:
+
+```html
+<footer class="text-center mt-4 p-3 bg-body-tertiary">
+  &copy; 2025 Nama Anda. All Rights Reserved.
+</footer>
+```
+
+Gunakan Bootstrap Grid untuk **mobile-friendly** design.
+
+---
+
+## 🎉 Hasil Akhir
+
+Sebuah Online Resume **responsive** dengan **Dark Mode** yang menggunakan Bootstrap Theme Toggle!
+
+---
+
+## 🚀 Next Steps
+
+- Tambahkan **portofolio** dengan Bootstrap Cards
+- Gunakan **GitHub Pages** untuk hosting gratis
+- Integrasikan dengan **Google Fonts** untuk tampilan lebih menarik
+
+---
+
+Selamat mencoba! 🚀
